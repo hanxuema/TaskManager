@@ -10,31 +10,31 @@ using TaskManager.Models;
 
 namespace TaskManager.Controllers
 {
-    [Route("api/Companies")]
+    [Route("api/Persons")]
     [ApiController]
     [EnableCors("MyPolicy")]
-    public class CompanyController : ControllerBase
+    public class PersonController : ControllerBase
     {
-
         ApplicationDbContext db = new ApplicationDbContext();
-        // GET: api/Task
+        // GET: api/Person
         [HttpGet]
-        public IEnumerable<Models.Company> Get()
+        public IEnumerable<Person> Get()
         {
-            return db.Companies.ToList();
+            return db.Persons.ToList();
         }
 
+        // GET: api/Task/5
         [HttpGet("{id}")]
-        public Models.Company Get(int id)
+        public Models.Person Get(int id)
         {
-            return db.Companies.FirstOrDefault(t => t.id == id);
+            return db.Persons.FirstOrDefault(t => t.id == id);
 
         }
 
         [HttpPost]
-        public void Post([FromBody] TaskManager.Models.Company company)
+        public void Post([FromBody] TaskManager.Models.Person person)
         {
-            db.Add(company);
+            db.Add(person);
             db.SaveChanges();
         }
     }
